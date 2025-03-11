@@ -55,8 +55,6 @@ const securityHeaders = [
 ]
 
 const output = 'export'
-const basePath = '/arthur-madureira/madureira.dev'
-const unoptimized = true
 
 /**
  * @type {import('next/dist/next-server/server/config').NextConfig}
@@ -65,7 +63,6 @@ module.exports = () => {
   const plugins = [withContentlayer, withBundleAnalyzer]
   return plugins.reduce((acc, next) => next(acc), {
     output,
-    basePath,
     reactStrictMode: true,
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
     eslint: {
@@ -78,7 +75,6 @@ module.exports = () => {
           hostname: 'picsum.photos',
         },
       ],
-      unoptimized,
     },
     async headers() {
       return [
