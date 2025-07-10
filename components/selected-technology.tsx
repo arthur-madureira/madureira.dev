@@ -4,6 +4,7 @@ import { useSkillsStore } from "@/lib/store"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Star } from "lucide-react"
+import Image from "next/image"
 
 export function SelectedTechnology() {
   const { technologies, selectedTechnology, skills } = useSkillsStore()
@@ -16,14 +17,16 @@ export function SelectedTechnology() {
   // Encontrar a habilidade correspondente (se existir)
   const skill = skills.find((s) => s.name.toLowerCase() === tech.name.toLowerCase())
 
-  // URL do ícone do Simple Icons
-  const iconUrl = `https://cdn.simpleicons.org/${tech.iconSlug}/${tech.color.replace("bg-", "")}`
-
   return (
     <Card>
       <CardHeader className="flex flex-row items-center gap-4">
         <div className={`p-3 rounded-lg ${tech.color} flex items-center justify-center`}>
-          <img src={`https://cdn.simpleicons.org/${tech.iconSlug}/white`} alt={tech.name} width="32" height="32" />
+          <Image 
+            src={`https://cdn.simpleicons.org/${tech.iconSlug}/white`} 
+            alt={tech.name} 
+            width={32} 
+            height={32} 
+          />
         </div>
         <div>
           <CardTitle>{tech.name}</CardTitle>

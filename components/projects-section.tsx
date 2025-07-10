@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Plus, ExternalLink, Edit, Trash2 } from "lucide-react"
+import Image from "next/image"
 import { useSkillsStore } from "@/lib/store"
 import { Badge } from "@/components/ui/badge"
 import {
@@ -180,10 +181,12 @@ export function ProjectsSection() {
             projects.map((project) => (
               <Card key={project.id} className="overflow-hidden border">
                 <div className="aspect-video relative bg-gray-100 dark:bg-gray-800">
-                  <img
+                  <Image
                     src={project.image || "/placeholder.svg?height=200&width=300"}
                     alt={project.title}
                     className="w-full h-full object-cover"
+                    width={300}
+                    height={200}
                   />
                   <div className="absolute top-2 right-2 flex gap-1">
                     <Button

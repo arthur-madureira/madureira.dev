@@ -60,7 +60,7 @@ export function TechnologyBadges() {
         </div>
         {activeSearch && (
           <p className="text-xs text-gray-500 mt-1">
-            Filtrando por: "{activeSearch}" -
+            Filtrando por: &quot;{activeSearch}&quot; -
             <button
               className="text-blue-500 hover:underline ml-1"
               onClick={() => {
