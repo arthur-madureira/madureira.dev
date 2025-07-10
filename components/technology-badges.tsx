@@ -8,6 +8,7 @@ import { Search } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { Badge } from "@/components/ui/badge"
+import Image from "next/image"
 
 export function TechnologyBadges() {
   const { technologies, selectedTechnology, setSelectedTechnology } = useSkillsStore()
@@ -98,11 +99,11 @@ export function TechnologyBadges() {
                         filter: activeSearch && !matches ? "grayscale(1)" : "none",
                       }}
                     >
-                      <img
+                      <Image
                         src={iconUrl || "/placeholder.svg"}
                         alt={tech.name}
-                        width="32"
-                        height="32"
+                        width={32}
+                        height={32}
                         className="mb-1"
                         style={{
                           filter: activeSearch && !matches ? "grayscale(1)" : "none",
