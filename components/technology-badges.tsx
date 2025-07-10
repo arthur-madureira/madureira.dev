@@ -79,7 +79,7 @@ export function TechnologyBadges() {
           <TooltipProvider>
             {technologies.map((tech) => {
               const matches = matchesTech(tech)
-              const iconUrl = `https://cdn.simpleicons.org/${tech.iconSlug}/white`
+              const iconUrl = `https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${tech.iconSlug}.svg`
 
               return (
                 <Tooltip key={tech.id}>
@@ -106,7 +106,9 @@ export function TechnologyBadges() {
                         height={32}
                         className="mb-1"
                         style={{
-                          filter: activeSearch && !matches ? "grayscale(1)" : "none",
+                          filter: activeSearch && !matches 
+                            ? "grayscale(1)" 
+                            : "brightness(0) invert(1)",
                         }}
                       />
                       <span className="text-xs font-medium text-white">{tech.name}</span>

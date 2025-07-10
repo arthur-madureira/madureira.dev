@@ -22,10 +22,13 @@ export function SelectedTechnology() {
       <CardHeader className="flex flex-row items-center gap-4">
         <div className={`p-3 rounded-lg ${tech.color} flex items-center justify-center`}>
           <Image 
-            src={`https://cdn.simpleicons.org/${tech.iconSlug}/white`} 
+            src={`https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${tech.iconSlug}.svg`} 
             alt={tech.name} 
             width={32} 
             height={32} 
+            style={{
+              filter: 'brightness(0) invert(1)'
+            }}
           />
         </div>
         <div>
