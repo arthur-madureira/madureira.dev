@@ -34,28 +34,24 @@ export function VideoPageClient({ slug }: VideoPageClientProps) {
   }
 
   return (
-    <div className="h-screen flex flex-col overflow-hidden">
-      {meta?.title && (
-        <div className="flex-shrink-0 px-6 py-6 bg-white z-10">
-          <h1 className="text-4xl font-bold text-center">{meta.title}</h1>
-        </div>
-      )}
-      
-      <div className="flex-1 flex items-center justify-center relative">
+    <div className="h-screen flex items-center justify-center bg-gray-50">
+      <div className="flex flex-col items-center max-w-full max-h-full">
+        {meta?.title && (
+          <h1 className="text-4xl font-bold text-center mb-4 px-6">{meta.title}</h1>
+        )}
+        
         <video 
           controls 
-          className="max-w-full max-h-full object-contain"
+          className="max-w-full max-h-[70vh] object-contain shadow-lg rounded-lg"
         >
           <source src={`/videos/${slug}.mp4`} type="video/mp4" />
           Seu navegador não suporta o elemento de vídeo.
         </video>
+        
+        {meta?.description && (
+          <p className="text-gray-700 text-center text-lg mt-4 px-6 max-w-4xl">{meta.description}</p>
+        )}
       </div>
-      
-      {meta?.description && (
-        <div className="flex-shrink-0 px-6 py-3 bg-white z-10">
-          <p className="text-gray-700 text-center text-sm">{meta.description}</p>
-        </div>
-      )}
     </div>
   )
 }
