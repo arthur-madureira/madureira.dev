@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { VideoPlayer } from "@/components/video-player"
 
 interface VideoPageClientProps {
   slug: string
