@@ -1,7 +1,7 @@
 import { VideoPageClient } from "@/components/video-page-client"
 import { Metadata } from "next"
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Vídeo",
     description: "Vídeo do sistema"
