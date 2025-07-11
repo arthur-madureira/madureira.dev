@@ -35,11 +35,11 @@ export function DeveloperInfo() {
   }
 
   const handleGithubClick = () => {
-    window.open("https://github.com/arthurmadureira", "_blank")
+    window.open("https://github.com/arthur-madureira", "_blank")
   }
 
   const handleLinkedinClick = () => {
-    window.open("https://linkedin.com/in/arthurmadureira", "_blank")
+    window.open("https://linkedin.com/in/arthur-madureira", "_blank")
   }
 
   const handleEmailClick = () => {

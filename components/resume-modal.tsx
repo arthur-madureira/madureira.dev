@@ -161,11 +161,11 @@ export function ResumeModal({ open, onOpenChange }: ResumeModalProps) {
             <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-6 text-xs text-gray-600 border-t pt-2">
               <div className="flex items-center gap-1">
                 <Github className="h-3 w-3" />
-                <span>github.com/arthurmadureira</span>
+                <span>github.com/arthur-madureira</span>
               </div>
               <div className="flex items-center gap-1">
                 <Linkedin className="h-3 w-3" />
-                <span>linkedin.com/in/arthurmadureira</span>
+                <span>linkedin.com/in/arthur-madureira</span>
               </div>
             </div>
           </div>
