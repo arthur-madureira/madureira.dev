@@ -1,6 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
+import { useGoogleAnalytics } from "@/hooks/use-google-analytics"
 
 interface VideoPageClientProps {
   slug: string
@@ -9,6 +10,9 @@ interface VideoPageClientProps {
 export function VideoPageClient({ slug }: VideoPageClientProps) {
   const [meta, setMeta] = useState<{ title?: string; description?: string } | null>(null)
   const [loading, setLoading] = useState(true)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const { trackVideoEvent, trackPageView } = useGoogleAnalytics()
+  const [hasStarted, setHasStarted] = useState(false)
 
   useEffect(() => {
     fetch(`/videos/${slug}.json`)
@@ -26,8 +30,53 @@ export function VideoPageClient({ slug }: VideoPageClientProps) {
   useEffect(() => {
     if (meta?.title) {
       document.title = meta.title
+      // Track page view
+      trackPageView(window.location.href, meta.title)
     }
-  }, [meta?.title])
+  }, [meta?.title, trackPageView])
+
+  // Video event listeners
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video || !meta?.title) return
+
+    const handlePlay = () => {
+      if (!meta.title) return
+      if (!hasStarted) {
+        trackVideoEvent('video_start', meta.title, video.currentTime, video.duration)
+        setHasStarted(true)
+      } else {
+        trackVideoEvent('video_play', meta.title, video.currentTime, video.duration)
+      }
+    }
+
+    const handlePause = () => {
+      if (!meta.title) return
+      trackVideoEvent('video_pause', meta.title, video.currentTime, video.duration)
+    }
+
+    const handleEnded = () => {
+      if (!meta.title) return
+      trackVideoEvent('video_complete', meta.title, video.currentTime, video.duration)
+    }
+
+    const handleSeeked = () => {
+      if (!meta.title) return
+      trackVideoEvent('video_seek', meta.title, video.currentTime, video.duration)
+    }
+
+    video.addEventListener('play', handlePlay)
+    video.addEventListener('pause', handlePause)
+    video.addEventListener('ended', handleEnded)
+    video.addEventListener('seeked', handleSeeked)
+
+    return () => {
+      video.removeEventListener('play', handlePlay)
+      video.removeEventListener('pause', handlePause)
+      video.removeEventListener('ended', handleEnded)
+      video.removeEventListener('seeked', handleSeeked)
+    }
+  }, [meta?.title, trackVideoEvent, hasStarted])
 
   if (loading) {
     return <div className="flex items-center justify-center h-screen">Carregando...</div>
@@ -41,8 +90,9 @@ export function VideoPageClient({ slug }: VideoPageClientProps) {
         )}
         
         <video 
+          ref={videoRef}
           controls 
-          className="max-w-full max-h-[70vh] object-contain shadow-lg rounded-lg"
+          className="max-w-full max-h-[100vh] object-contain shadow-lg rounded-lg"
         >
           <source src={`/videos/${slug}.mp4`} type="video/mp4" />
           Seu navegador não suporta o elemento de vídeo.
