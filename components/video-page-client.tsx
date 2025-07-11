@@ -17,10 +17,6 @@ export function VideoPageClient({ slug }: VideoPageClientProps) {
       .then(data => {
         setMeta(data)
         setLoading(false)
-        // Atualiza o título da página imediatamente após carregar
-        if (data?.title) {
-          document.title = data.title
-        }
       })
       .catch(() => {
         setMeta(null)
@@ -29,11 +25,10 @@ export function VideoPageClient({ slug }: VideoPageClientProps) {
   }, [slug])
 
   useEffect(() => {
-    // Garantir que o título seja atualizado quando meta mudar
     if (meta?.title) {
       document.title = meta.title
     }
-  }, [meta])
+  }, [meta?.title])
 
   if (loading) {
     return <div className="flex items-center justify-center h-screen">Carregando...</div>
