@@ -1,6 +1,7 @@
 import { DeveloperInfo } from "@/components/developer-info"
 import { TechnologyBadges } from "@/components/technology-badges"
 import { SelectedTechnology } from "@/components/selected-technology"
+import { GuestbookCTA } from "@/components/guestbook-cta"
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
           </div>
           <div className="lg:col-span-8 space-y-8">
             <TechnologyBadges />
+            <GuestbookCTA />
           </div>
         </div>
       </div>
