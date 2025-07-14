@@ -75,8 +75,8 @@ export function TechnologyBadges() {
         )}
       </CardHeader>
       <CardContent>
-        <div className="flex flex-wrap gap-3">
-          <TooltipProvider>
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
+          <TooltipProvider delayDuration={200} skipDelayDuration={100}>
             {technologies.map((tech) => {
               const matches = matchesTech(tech)
               const iconUrl = `https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${tech.iconSlug}.svg`
@@ -86,9 +86,9 @@ export function TechnologyBadges() {
                   <TooltipTrigger asChild>
                     <button
                       className={cn(
-                        "flex flex-col items-center justify-center w-20 h-20 rounded-lg transition-all",
+                        "flex flex-col items-center justify-center w-full aspect-square rounded-lg transition-all duration-200",
                         tech.color,
-                        "hover:scale-105",
+                        "hover:scale-105 active:scale-95",
                         selectedTechnology === tech.id
                           ? "ring-2 ring-offset-2 ring-offset-white dark:ring-offset-gray-900 ring-black dark:ring-white"
                           : "",
@@ -114,14 +114,8 @@ export function TechnologyBadges() {
                       <span className="text-xs font-medium text-white">{tech.name}</span>
                     </button>
                   </TooltipTrigger>
-                  <TooltipContent className="max-w-xs">
-                    <div className="flex flex-wrap gap-1">
-                      {tech.tags.map((tag, index) => (
-                        <Badge key={index} variant="outline" className="text-xs">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
+                  <TooltipContent side="top" align="center">
+                    <p className="font-medium">{tech.name}</p>
                   </TooltipContent>
                 </Tooltip>
               )

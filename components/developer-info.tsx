@@ -2,12 +2,12 @@
 
 import { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Github, Linkedin, Mail, MapPin, FileText } from "lucide-react"
 import { useSkillsStore } from "@/lib/store"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { ResumeModal } from "./resume-modal"
+import { AvatarModal } from "@/components/avatar-modal"
 
 export function DeveloperInfo() {
   const { developerName } = useSkillsStore()
@@ -39,7 +39,7 @@ export function DeveloperInfo() {
   }
 
   const handleLinkedinClick = () => {
-    window.open("https://linkedin.com/in/arthur-madureira", "_blank")
+    window.open("https://www.linkedin.com/in/arthur-madureira-054074246/", "_blank")
   }
 
   const handleEmailClick = () => {
@@ -50,10 +50,13 @@ export function DeveloperInfo() {
     <>
       <Card className="border-none shadow-md">
         <CardHeader className="text-center pb-2">
-          <Avatar className="w-32 h-32 mx-auto mb-4">
-            <AvatarImage src="https://github.com/arthur-madureira.png" alt="Arthur Madureira" />
-            <AvatarFallback>AM</AvatarFallback>
-          </Avatar>
+          <AvatarModal 
+            src="https://github.com/arthur-madureira.png" 
+            alt="Arthur Madureira" 
+            fallback="AM"
+            size="xl"
+            className="mx-auto mb-4"
+          />
           <CardTitle className="text-2xl font-bold">{developerName}</CardTitle>
           <CardDescription className="flex items-center justify-center gap-1 text-sm">
             <MapPin className="h-3 w-3" /> Natal, RN - Brasil
