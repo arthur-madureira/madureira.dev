@@ -50,8 +50,8 @@ export function DeveloperInfo() {
     <>
       <Card className="border-none shadow-md">
         <CardHeader className="text-center pb-2">
-          <Avatar className="w-24 h-24 mx-auto mb-4">
-            <AvatarImage src="/placeholder.svg?height=96&width=96" alt="Developer" />
+          <Avatar className="w-32 h-32 mx-auto mb-4">
+            <AvatarImage src="https://github.com/arthur-madureira.png" alt="Arthur Madureira" />
             <AvatarFallback>AM</AvatarFallback>
           </Avatar>
           <CardTitle className="text-2xl font-bold">{developerName}</CardTitle>
